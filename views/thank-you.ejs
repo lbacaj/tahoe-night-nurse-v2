@@ -12,7 +12,14 @@
         Thank You!
       </h1>
 
-      <% if (type === 'caregiver') { %>
+      <% if (type === 'nanny') { %>
+        <p class="text-gray-600 mb-6">
+          Thank you for applying to join our elite network! We'll review your application and contact you within 48 hours.
+        </p>
+        <p class="text-sm text-gray-500">
+          We're excited about the possibility of working together to provide exceptional care to Tahoe families.
+        </p>
+      <% } else if (type === 'caregiver') { %>
         <p class="text-gray-600 mb-6">
           Thanks for applying. We'll review your application and follow up about next steps.
         </p>

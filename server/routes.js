@@ -98,6 +98,20 @@ router.get('/caregivers', (req, res) => {
   });
 });
 
+router.get('/join', (req, res) => {
+  res.render('nanny-network', {
+    title: 'Join Our Network | Tahoe Night Nurse',
+    description: 'Join the premier night nanny network in Lake Tahoe & Truckee. Premium rates, vetted families, flexible scheduling.'
+  });
+});
+
+router.get('/nanny-network', (req, res) => {
+  res.render('nanny-network', {
+    title: 'Join Our Network | Tahoe Night Nurse',
+    description: 'Join the premier night nanny network in Lake Tahoe & Truckee. Premium rates, vetted families, flexible scheduling.'
+  });
+});
+
 router.get('/thank-you', (req, res) => {
   const type = req.query.type || 'parent';
   res.render('thank-you', {
@@ -177,6 +191,92 @@ router.post('/api/caregivers', async (req, res) => {
   } catch (error) {
     console.error('Error saving caregiver:', error);
     res.status(500).json({ ok: false, error: 'We couldn\'t submit right now. Please try again in a moment.' });
+  }
+});
+
+router.post('/api/caregivers/apply', async (req, res) => {
+  const errors = {};
+
+  // Validate required fields
+  if (!req.body.full_name?.trim()) {
+    errors.full_name = 'Full name is required.';
+  }
+
+  if (!req.body.email?.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    errors.email = 'Valid email is required.';
+  }
+
+  if (!req.body.phone?.trim()) {
+    errors.phone = 'Phone number is required.';
+  }
+
+  if (!req.body.location?.trim()) {
+    errors.location = 'Location is required.';
+  }
+
+  if (!req.body.years_experience) {
+    errors.years_experience = 'Years of experience is required.';
+  }
+
+  if (!req.body.availability) {
+    errors.availability = 'Availability is required.';
+  }
+
+  if (!req.body.experience_summary?.trim() || req.body.experience_summary.trim().length < 50) {
+    errors.experience_summary = 'Experience summary is required (minimum 50 characters).';
+  }
+
+  // Bot check
+  if (req.body.company) {
+    return res.redirect('/thank-you?type=nanny');
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return res.status(400).json({ ok: false, errors });
+  }
+
+  try {
+    // Process certifications
+    const certs = Array.isArray(req.body.certs) ? req.body.certs.join(', ') : (req.body.certs || '');
+
+    // Process work areas
+    const workAreas = Array.isArray(req.body.work_areas) ? req.body.work_areas.join(', ') : (req.body.work_areas || '');
+
+    // Build enhanced notes with all the extra information
+    const enhancedNotes = [
+      req.body.location ? `Location: ${req.body.location}` : '',
+      workAreas ? `Work Areas: ${workAreas}` : '',
+      req.body.availability_notes ? `Schedule: ${req.body.availability_notes}` : '',
+      req.body.hourly_rate ? `Rate: ${req.body.hourly_rate}` : '',
+      req.body.experience_summary ? `Experience: ${req.body.experience_summary}` : ''
+    ].filter(Boolean).join(' | ');
+
+    const result = insertCaregiver({
+      full_name: req.body.full_name.trim(),
+      email: req.body.email.trim().toLowerCase(),
+      phone: req.body.phone.trim(),
+      certs: certs || null,
+      years_experience: req.body.years_experience,
+      availability: req.body.availability,
+      notes: enhancedNotes.substring(0, 500) || null,
+      updates_opt_in: req.body.updates_opt_in === 'on' || req.body.updates_opt_in === true
+    });
+
+    // Send enhanced notification to admin
+    await sendAdminNotification('nanny', {
+      ...req.body,
+      work_areas: workAreas,
+      form_type: 'Enhanced Nanny Network Application'
+    });
+
+    if (req.headers['content-type']?.includes('json')) {
+      return res.json({ ok: true, duplicate: result.duplicate });
+    }
+
+    res.redirect('/thank-you?type=nanny');
+  } catch (error) {
+    console.error('Error saving nanny application:', error);
+    res.status(500).json({ ok: false, error: 'We couldn\'t submit your application right now. Please try again.' });
   }
 });
 
