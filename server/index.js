@@ -14,10 +14,10 @@ app.use(helmet({
     directives: {
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'],
-      scriptSrc: ["'self'", "'unsafe-inline'", 'plausible.io'],
+      scriptSrc: ["'self'", "'unsafe-inline'", 'plausible.io', 'static.cloudflareinsights.com'],
       imgSrc: ["'self'", 'data:', 'https:'],
       fontSrc: ["'self'", 'fonts.gstatic.com'],
-      connectSrc: ["'self'", 'plausible.io']
+      connectSrc: ["'self'", 'plausible.io', 'cloudflareinsights.com']
     }
   },
   hsts: {
