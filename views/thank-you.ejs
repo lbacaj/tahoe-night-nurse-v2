@@ -1,0 +1,48 @@
+<%- include('_head') %>
+<%- include('_header') %>
+
+<main class="flex-1 py-16">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="bg-white rounded-lg shadow-sm p-12">
+      <svg class="w-16 h-16 text-green-500 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+
+      <h1 class="text-3xl font-serif font-semibold text-lake-navy mb-4">
+        Thank You!
+      </h1>
+
+      <% if (type === 'caregiver') { %>
+        <p class="text-gray-600 mb-6">
+          Thanks for applying. We'll review your application and follow up about next steps.
+        </p>
+        <p class="text-sm text-gray-500">
+          Please keep your certifications current—verification may be required before introductions.
+        </p>
+      <% } else { %>
+        <p class="text-gray-600 mb-6">
+          Thanks for reaching out. We're building our local roster and will contact you as we open availability.
+        </p>
+        <p class="text-sm text-gray-500">
+          In the meantime, feel free to reply to our email with any helpful details about your schedule, preferences, or special requests.
+        </p>
+      <% } %>
+
+      <div class="mt-8 pt-8 border-t">
+        <a href="/" class="text-lake-navy hover:text-black transition">
+          ← Return to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<% if (typeof plausible !== 'undefined' && plausible) { %>
+<script>
+  if (window.plausible) {
+    window.plausible('Thank-You');
+  }
+</script>
+<% } %>
+
+<%- include('_footer') %>

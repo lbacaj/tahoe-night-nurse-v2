@@ -1,0 +1,498 @@
+<%- include('_head') %>
+
+<div class="bg-white overflow-hidden">
+  <!-- Premium Header -->
+  <header class="absolute inset-x-0 top-0 z-50 backdrop-blur-lg bg-white/5">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-8 py-6 lg:px-12">
+      <div class="flex lg:flex-1">
+        <a href="/" class="group -m-1.5 p-1.5">
+          <span class="font-display text-3xl font-bold text-white tracking-tight transition-all duration-300 group-hover:text-gold-light">
+            Tahoe Night Nurse
+          </span>
+        </a>
+      </div>
+      <div class="hidden lg:flex lg:gap-x-8">
+        <a href="#services" class="text-sm font-medium text-white/90 hover:text-gold-light transition-all duration-300">Services</a>
+        <a href="#about" class="text-sm font-medium text-white/90 hover:text-gold-light transition-all duration-300">About</a>
+        <a href="#signup" class="text-sm font-medium text-white/90 hover:text-gold-light transition-all duration-300">Join Waitlist</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Premium Hero Section with Parallax -->
+  <div class="relative min-h-screen flex items-center justify-center dark-gradient">
+    <!-- Animated Background Pattern -->
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute inset-0 hero-pattern"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-lake-navy/50 to-lake-navy"></div>
+    </div>
+
+    <!-- Floating Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-gold/10 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+    </div>
+
+    <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
+      <div class="mx-auto max-w-4xl">
+        <!-- Premium Badge -->
+        <div class="inline-flex items-center rounded-full px-6 py-2 glass border border-gold/20 mb-8 animate-fade-in">
+          <span class="text-gold-light text-sm font-medium tracking-wide">EXCLUSIVE • LAKE TAHOE & TRUCKEE</span>
+        </div>
+
+        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight animate-slide-up">
+          <span class="block">Lake Tahoe's First</span>
+          <span class="text-gradient-gold mt-2 block">Professional Night Nanny</span>
+          <span class="block mt-2">Service</span>
+        </h1>
+
+        <div class="mt-8 animate-fade-in" style="animation-delay: 0.3s;">
+          <span class="inline-block px-8 py-3 text-2xl font-serif text-gold-light italic">Coming Soon • 2025</span>
+        </div>
+
+        <p class="mt-8 text-lg md:text-xl leading-relaxed text-gray-300 max-w-3xl mx-auto animate-fade-in" style="animation-delay: 0.5s;">
+          Thoroughly vetted, trained, CPR-certified newborn care specialists for your peace of mind.
+          Skip the uncertainty of finding overnight childcare on your own.
+        </p>
+
+        <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 animate-fade-in" style="animation-delay: 0.7s;">
+          <a href="#signup" class="btn btn-gold text-lg px-10 py-4 rounded-full shadow-gold">
+            <span>Reserve Your Spot</span>
+            <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <a href="#learn-more" class="group text-lg font-medium text-white/90 hover:text-gold-light transition-all duration-300 flex items-center">
+            Learn More
+            <svg class="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Premium Features Section -->
+  <section id="learn-more" class="relative py-32 premium-gradient section-fade">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center mb-20">
+        <h2 class="font-display text-5xl font-bold text-gradient mb-6">
+          Professional Care You Can Trust
+        </h2>
+        <p class="text-xl leading-relaxed text-gray-600">
+          We understand the unique challenges of finding reliable overnight childcare in our Lake Tahoe mountain community.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Feature Card 1 -->
+        <div class="group card hover-lift">
+          <div class="relative z-10">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold to-gold-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-lake-navy mb-4">
+              Rigorous Background Checks
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Comprehensive screening and in-person interviews ensure only the most qualified and trustworthy caregivers join our exclusive roster.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature Card 2 -->
+        <div class="group card hover-lift">
+          <div class="relative z-10">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold to-gold-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-lake-navy mb-4">
+              CPR & Infant Care Certified
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              All our nannies maintain current CPR certification and receive ongoing specialized infant care training to ensure the highest standards.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature Card 3 -->
+        <div class="group card hover-lift">
+          <div class="relative z-10">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold to-gold-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-lake-navy mb-4">
+              Newborn Specialists
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Expert care for your baby's first six months. Our caregivers are true specialists in those critical early months, providing peace of mind when you need it most.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Area Badge -->
+      <div class="mt-20 text-center">
+        <div class="inline-flex items-center rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 px-8 py-4 shadow-lg">
+          <svg class="w-6 h-6 text-blue-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span class="font-semibold text-blue-900">Serving South Lake Tahoe • North Lake Tahoe • Truckee</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Mission Section -->
+  <section id="about" class="relative py-32 bg-cream section-fade">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="order-2 lg:order-1">
+          <div class="relative group">
+            <div class="absolute -inset-4 bg-gradient-to-r from-gold/20 to-gold-light/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <img src="/mother-baby.jpg" alt="Mother and baby" class="relative rounded-3xl shadow-premium w-full object-cover aspect-[4/3]">
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-lake-navy/20 via-transparent to-transparent"></div>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <div class="inline-flex items-center rounded-full px-4 py-2 bg-gold/10 border border-gold/20 mb-6">
+            <span class="text-sm font-semibold text-gold-dark tracking-wide">OUR MISSION</span>
+          </div>
+
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-lake-navy mb-6">
+            Rest, Recover, and Thrive
+          </h2>
+
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Sleep deprivation is the #1 challenge for new parents. Our mission is simple: to help Tahoe families rest, recover, and thrive with the confidence that your baby is cared for by professionals.
+          </p>
+
+          <p class="text-lg text-gray-600 italic mb-10">
+            Founded by local parents, who get it.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-gold-light flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lake-navy text-lg">Local Parent Founders</h3>
+                <p class="text-gray-600">We understand the unique needs of mountain families</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-gold-light flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lake-navy text-lg">Mountain Community Focused</h3>
+                <p class="text-gray-600">Designed specifically for Lake Tahoe & Truckee families</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-gold-light flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lake-navy text-lg">Parent-Tested Approach</h3>
+                <p class="text-gray-600">Every detail crafted from real parenting experience</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Signup Form -->
+  <section id="signup" class="relative py-32 bg-gradient-to-br from-gray-50 via-white to-gray-50 section-fade">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center mb-16">
+        <div class="inline-flex items-center rounded-full px-6 py-2 bg-gold/10 border border-gold/20 mb-6">
+          <span class="text-sm font-semibold text-gold-dark tracking-wide">LIMITED AVAILABILITY</span>
+        </div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-lake-navy mb-4">
+          Be the First to Know When We Launch
+        </h2>
+        <p class="text-xl text-gray-600">
+          Secure your spot on our exclusive priority list
+        </p>
+      </div>
+
+      <div class="mx-auto max-w-2xl">
+        <form method="POST" action="/api/parents" class="card relative overflow-visible">
+          <div class="absolute -top-px left-8 right-8 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"></div>
+
+          <input type="text" name="company" class="hidden" tabindex="-1" autocomplete="off">
+
+          <div class="relative z-10 space-y-8">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="full_name" class="form-label text-lake-navy font-semibold">Full Name</label>
+                <input type="text" name="full_name" id="full_name" required
+                  class="form-input hover:border-gold/30 focus:border-gold"
+                  placeholder="Jane Smith">
+              </div>
+
+              <div>
+                <label for="phone" class="form-label text-lake-navy font-semibold">Phone Number</label>
+                <input type="tel" name="phone" id="phone" required
+                  class="form-input hover:border-gold/30 focus:border-gold"
+                  placeholder="(530) 555-0100">
+              </div>
+            </div>
+
+            <div>
+              <label for="email" class="form-label text-lake-navy font-semibold">Email Address</label>
+              <input type="email" name="email" id="email" required
+                class="form-input hover:border-gold/30 focus:border-gold"
+                placeholder="your.email@example.com">
+            </div>
+
+            <div>
+              <label for="baby_timing" class="form-label text-lake-navy font-semibold">Due Date or Child's Age</label>
+              <input type="text" name="baby_timing" id="baby_timing" required
+                class="form-input hover:border-gold/30 focus:border-gold"
+                placeholder="e.g., March 2025 or 3 months old">
+            </div>
+
+            <div>
+              <label for="start_timeframe" class="form-label text-lake-navy font-semibold">When would you like to start?</label>
+              <select name="start_timeframe" id="start_timeframe" required
+                class="form-input hover:border-gold/30 focus:border-gold appearance-none">
+                <option value="">Select timeframe</option>
+                <option value="ASAP">As soon as possible</option>
+                <option value="Next 2–4 weeks">Next 2–4 weeks</option>
+                <option value="1-2 months">1-2 months</option>
+                <option value="3+ months">3+ months</option>
+                <option value="Just exploring">Just exploring options</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="notes" class="form-label text-lake-navy font-semibold">Tell us about your needs</label>
+              <textarea name="notes" id="notes" rows="4"
+                class="form-input hover:border-gold/30 focus:border-gold resize-none"
+                placeholder="Share any specific schedule preferences, special needs, or questions..."></textarea>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+              <label class="flex items-start cursor-pointer group">
+                <input type="checkbox" name="consent" required
+                  class="mt-1 w-5 h-5 rounded border-gray-300 text-gold focus:ring-gold">
+                <span class="ml-3 text-gray-700 group-hover:text-gray-900 transition-colors">
+                  I understand this is an interest list for when the service launches. Your information will be kept strictly confidential and only used to notify you about our launch.
+                </span>
+              </label>
+            </div>
+
+            <button type="submit" class="w-full btn btn-gold text-lg py-4 font-semibold tracking-wide">
+              Join Our Priority List
+              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <p class="text-center text-gray-500 text-sm mt-8">
+          <svg class="inline w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          Your privacy is our priority. We never share your information.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Coming Soon Section -->
+  <section class="relative py-32 bg-white section-fade">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <div class="relative group">
+            <div class="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <img src="/lake-tahoe.jpg" alt="Lake Tahoe" class="relative rounded-3xl shadow-premium w-full object-cover aspect-[16/10]">
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-lake-navy/20 via-transparent to-transparent"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="inline-flex items-center rounded-full px-4 py-2 bg-blue-50 border border-blue-200 mb-6">
+            <span class="text-sm font-semibold text-blue-900 tracking-wide">LAUNCHING 2025</span>
+          </div>
+
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-lake-navy mb-6">
+            Coming Soon to Lake Tahoe & Truckee
+          </h2>
+
+          <p class="text-xl leading-relaxed text-gray-700 mb-10">
+            We're working hard to bring you the most trusted 0-6 month infant care solution our mountain community has been waiting for.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-2 h-2 rounded-full bg-gold animate-pulse-slow"></div>
+              <p class="text-lg text-gray-700">Launching with limited initial availability</p>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-2 h-2 rounded-full bg-gold animate-pulse-slow" style="animation-delay: 0.5s;"></div>
+              <p class="text-lg text-gray-700">Priority access for early registrations</p>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-2 h-2 rounded-full bg-gold animate-pulse-slow" style="animation-delay: 1s;"></div>
+              <p class="text-lg text-gray-700">Personalized matching process</p>
+            </div>
+          </div>
+
+          <div class="mt-12">
+            <a href="#signup" class="btn btn-primary text-lg px-8 py-4">
+              Reserve Your Spot Now
+              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Footer -->
+  <footer class="relative dark-gradient">
+    <div class="absolute inset-0 hero-pattern opacity-10"></div>
+    <div class="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <h3 class="font-display text-3xl font-bold text-white mb-4">
+            Tahoe Night Nurse
+          </h3>
+          <p class="text-gray-400 text-lg mb-6">
+            Lake Tahoe's first professional night nanny service.<br>
+            Founded by local parents, for local parents.
+          </p>
+          <div class="flex items-center gap-2 text-gray-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span class="text-sm">South Lake Tahoe • North Lake Tahoe • Truckee</span>
+          </div>
+        </div>
+
+        <div class="lg:text-right">
+          <div class="space-y-4">
+            <a href="mailto:hello@tahoenightnurse.com" class="inline-flex items-center text-gray-400 hover:text-gold-light transition-colors">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              hello@tahoenightnurse.com
+            </a>
+          </div>
+
+          <div class="mt-8 pt-8 border-t border-gray-800">
+            <p class="text-sm text-gray-500">
+              © <%= new Date().getFullYear() %> Tahoe Night Nurse. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Premium JavaScript Enhancements -->
+<script>
+// Smooth scroll for navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Premium form validation with animations
+const form = document.querySelector('form');
+if (form) {
+  form.addEventListener('submit', function(e) {
+    const button = this.querySelector('button[type="submit"]');
+    button.innerHTML = `
+      <svg class="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      Processing...
+    `;
+  });
+
+  // Floating label effect
+  const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
+  inputs.forEach(input => {
+    input.addEventListener('focus', function() {
+      this.parentElement.classList.add('focused');
+    });
+
+    input.addEventListener('blur', function() {
+      if (!this.value) {
+        this.parentElement.classList.remove('focused');
+      }
+    });
+  });
+}
+
+// Parallax effect on scroll
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const parallax = document.querySelector('.hero-pattern');
+  if (parallax) {
+    parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+  }
+});
+
+// Intersection Observer for fade-in animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate-fade-in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.card, section h2, section p').forEach(el => {
+  observer.observe(el);
+});
+</script>

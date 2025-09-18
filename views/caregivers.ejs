@@ -1,0 +1,223 @@
+<%- include('_head') %>
+<%- include('_header') %>
+
+<div class="premium-loader" id="loader">
+  <div class="loader-ring"></div>
+</div>
+
+<main class="flex-1 py-12">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white rounded-lg shadow-sm p-8">
+      <h1 class="text-3xl font-serif font-semibold text-lake-navy mb-3">For Night Nurses</h1>
+      <p class="text-gray-600 mb-8">
+        Apply to be considered for future overnight newborn care opportunities in the Tahoe area.
+      </p>
+
+      <form method="POST" action="/api/caregivers" id="caregiver-form">
+        <input type="text" name="company" class="hidden" tabindex="-1" autocomplete="off">
+
+        <div class="space-y-6">
+          <div>
+            <label for="full_name" class="form-label">Full name *</label>
+            <input
+              type="text"
+              id="full_name"
+              name="full_name"
+              required
+              class="form-input"
+              placeholder="Jane Smith"
+            >
+            <span class="form-error hidden" id="full_name_error"></span>
+          </div>
+
+          <div>
+            <label for="email" class="form-label">Email *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="form-input"
+              placeholder="jane@example.com"
+            >
+            <span class="form-error hidden" id="email_error"></span>
+          </div>
+
+          <div>
+            <label for="phone" class="form-label">Phone *</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              class="form-input"
+              placeholder="(530) 555-0100"
+            >
+            <span class="form-error hidden" id="phone_error"></span>
+          </div>
+
+          <div>
+            <label class="form-label">Certifications (check all that apply)</label>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input type="checkbox" name="certs" value="Infant CPR" class="mr-3 h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold">
+                <span class="text-gray-700">Infant CPR</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" name="certs" value="NCS" class="mr-3 h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold">
+                <span class="text-gray-700">Newborn Care Specialist (NCS)</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" name="certs" value="Doula" class="mr-3 h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold">
+                <span class="text-gray-700">Doula</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" name="certs" value="RN" class="mr-3 h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold">
+                <span class="text-gray-700">Registered Nurse (RN)</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" name="certs" value="Other" class="mr-3 h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold">
+                <span class="text-gray-700">Other relevant certification</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label for="years_experience" class="form-label">Years of newborn experience</label>
+            <input
+              type="number"
+              id="years_experience"
+              name="years_experience"
+              min="0"
+              max="50"
+              class="form-input"
+              placeholder="5"
+            >
+          </div>
+
+          <div>
+            <label for="availability" class="form-label">Availability *</label>
+            <select
+              id="availability"
+              name="availability"
+              required
+              class="form-input"
+            >
+              <option value="">Select availability</option>
+              <option value="Weeknights">Weeknights</option>
+              <option value="Weekends">Weekends</option>
+              <option value="Both">Both</option>
+              <option value="Flexible">Flexible</option>
+            </select>
+            <span class="form-error hidden" id="availability_error"></span>
+          </div>
+
+          <div>
+            <label for="notes" class="form-label">Notes (optional)</label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="3"
+              maxlength="280"
+              class="form-input"
+              placeholder="Tell us about your experience or special skills..."
+            ></textarea>
+            <p class="text-xs text-gray-500 mt-1">Max 280 characters</p>
+          </div>
+
+          <div class="space-y-3 border-t pt-6">
+            <label class="flex items-start">
+              <input
+                type="checkbox"
+                name="consent"
+                required
+                class="mt-1 mr-3 h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold"
+              >
+              <span class="text-sm text-gray-700">
+                I understand background checks and verification may be required before introductions. *
+              </span>
+            </label>
+
+            <label class="flex items-start">
+              <input
+                type="checkbox"
+                name="updates_opt_in"
+                class="mt-1 mr-3 h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold"
+              >
+              <span class="text-sm text-gray-700">
+                Email me updates about opportunities.
+              </span>
+            </label>
+          </div>
+
+          <div class="pt-4">
+            <button type="submit" class="btn btn-primary w-full">
+              Submit Application
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script>
+document.getElementById('caregiver-form').addEventListener('submit', function(e) {
+  let isValid = true;
+  const errors = document.querySelectorAll('.form-error');
+  errors.forEach(err => err.classList.add('hidden'));
+
+  const fullName = document.getElementById('full_name');
+  if (!fullName.value.trim()) {
+    document.getElementById('full_name_error').textContent = 'Please add your name.';
+    document.getElementById('full_name_error').classList.remove('hidden');
+    isValid = false;
+  }
+
+  const email = document.getElementById('email');
+  if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    document.getElementById('email_error').textContent = 'Please add your email so we can follow up.';
+    document.getElementById('email_error').classList.remove('hidden');
+    isValid = false;
+  }
+
+  const phone = document.getElementById('phone');
+  if (!phone.value.trim()) {
+    document.getElementById('phone_error').textContent = 'Please add your phone number.';
+    document.getElementById('phone_error').classList.remove('hidden');
+    isValid = false;
+  }
+
+  const availability = document.getElementById('availability');
+  if (!availability.value) {
+    document.getElementById('availability_error').textContent = 'Please select your availability.';
+    document.getElementById('availability_error').classList.remove('hidden');
+    isValid = false;
+  }
+
+  if (!isValid) {
+    e.preventDefault();
+    // Smooth scroll to first error
+    const firstError = document.querySelector('.form-error:not(.hidden)');
+    if (firstError) {
+      firstError.closest('.space-y-6 > div').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  } else {
+    // Show premium loader on valid submission
+    document.getElementById('loader').classList.add('active');
+  }
+});
+
+// Add ripple effect to buttons
+document.querySelectorAll('.btn').forEach(button => {
+  button.addEventListener('click', function(e) {
+    const rect = this.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    this.style.setProperty('--ripple-x', x + 'px');
+    this.style.setProperty('--ripple-y', y + 'px');
+  });
+});
+</script>
+
+<%- include('_footer') %>

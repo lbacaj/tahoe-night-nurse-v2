@@ -1,0 +1,187 @@
+<%- include('_head') %>
+<%- include('_header') %>
+
+<div class="premium-loader" id="loader">
+  <div class="loader-ring"></div>
+</div>
+
+<main class="flex-1 py-12">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white rounded-lg shadow-sm p-8">
+      <h1 class="text-3xl font-serif font-semibold text-lake-navy mb-3">For Parents</h1>
+      <p class="text-gray-600 mb-8">
+        Tell us about your family and timeline. We'll be in touch as we open availability in Lake Tahoe & Truckee.
+      </p>
+
+      <form method="POST" action="/api/parents" id="parent-form">
+        <input type="text" name="company" class="hidden" tabindex="-1" autocomplete="off">
+
+        <div class="space-y-6">
+          <div>
+            <label for="full_name" class="form-label">Full name *</label>
+            <input
+              type="text"
+              id="full_name"
+              name="full_name"
+              required
+              class="form-input"
+              placeholder="Jane Smith"
+            >
+            <span class="form-error hidden" id="full_name_error"></span>
+          </div>
+
+          <div>
+            <label for="email" class="form-label">Email *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="form-input"
+              placeholder="jane@example.com"
+            >
+            <span class="form-error hidden" id="email_error"></span>
+          </div>
+
+          <div>
+            <label for="phone" class="form-label">Phone (optional)</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="form-input"
+              placeholder="(530) 555-0100"
+            >
+          </div>
+
+          <div>
+            <label for="baby_timing" class="form-label">Baby due date or baby's age (optional)</label>
+            <input
+              type="text"
+              id="baby_timing"
+              name="baby_timing"
+              class="form-input"
+              placeholder="Due March 2025 or 2 months old"
+            >
+            <p class="text-xs text-gray-500 mt-1">Examples: "Due March 15" or "3 weeks old"</p>
+          </div>
+
+          <div>
+            <label for="start_timeframe" class="form-label">Preferred start timeframe *</label>
+            <select
+              id="start_timeframe"
+              name="start_timeframe"
+              required
+              class="form-input"
+            >
+              <option value="">Select timeframe</option>
+              <option value="ASAP">ASAP</option>
+              <option value="Next 2–4 weeks">Next 2–4 weeks</option>
+              <option value="This season">This season</option>
+              <option value="Just exploring">Just exploring</option>
+            </select>
+            <span class="form-error hidden" id="start_timeframe_error"></span>
+          </div>
+
+          <div>
+            <label for="notes" class="form-label">Notes (optional)</label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="3"
+              maxlength="280"
+              class="form-input"
+              placeholder="Any special considerations or preferences..."
+            ></textarea>
+            <p class="text-xs text-gray-500 mt-1">Max 280 characters</p>
+          </div>
+
+          <div class="space-y-3 border-t pt-6">
+            <label class="flex items-start">
+              <input
+                type="checkbox"
+                name="consent"
+                required
+                class="mt-1 mr-3 h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold"
+              >
+              <span class="text-sm text-gray-700">
+                I understand this is an interest list—no booking yet. *
+              </span>
+            </label>
+
+            <label class="flex items-start">
+              <input
+                type="checkbox"
+                name="updates_opt_in"
+                class="mt-1 mr-3 h-4 w-4 text-gold border-gray-300 rounded focus:ring-gold"
+              >
+              <span class="text-sm text-gray-700">
+                Email me availability updates.
+              </span>
+            </label>
+          </div>
+
+          <div class="pt-4">
+            <button type="submit" class="btn btn-primary w-full">
+              Join Interest List
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script>
+document.getElementById('parent-form').addEventListener('submit', function(e) {
+  let isValid = true;
+  const errors = document.querySelectorAll('.form-error');
+  errors.forEach(err => err.classList.add('hidden'));
+
+  const fullName = document.getElementById('full_name');
+  if (!fullName.value.trim()) {
+    document.getElementById('full_name_error').textContent = 'Please add your name so we can address you properly.';
+    document.getElementById('full_name_error').classList.remove('hidden');
+    isValid = false;
+  }
+
+  const email = document.getElementById('email');
+  if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    document.getElementById('email_error').textContent = 'Please add your email so we can follow up.';
+    document.getElementById('email_error').classList.remove('hidden');
+    isValid = false;
+  }
+
+  const timeframe = document.getElementById('start_timeframe');
+  if (!timeframe.value) {
+    document.getElementById('start_timeframe_error').textContent = 'Please select when you might need care.';
+    document.getElementById('start_timeframe_error').classList.remove('hidden');
+    isValid = false;
+  }
+
+  if (!isValid) {
+    e.preventDefault();
+    // Smooth scroll to first error
+    const firstError = document.querySelector('.form-error:not(.hidden)');
+    if (firstError) {
+      firstError.closest('.space-y-6 > div').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  } else {
+    // Show premium loader on valid submission
+    document.getElementById('loader').classList.add('active');
+  }
+});
+
+// Add ripple effect to buttons
+document.querySelectorAll('.btn').forEach(button => {
+  button.addEventListener('click', function(e) {
+    const rect = this.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    this.style.setProperty('--ripple-x', x + 'px');
+    this.style.setProperty('--ripple-y', y + 'px');
+  });
+});
+</script>
+
+<%- include('_footer') %>
