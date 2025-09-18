@@ -14,7 +14,7 @@ app.use(helmet({
     directives: {
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'],
-      scriptSrc: ["'self'", 'plausible.io'],
+      scriptSrc: ["'self'", "'unsafe-inline'", 'plausible.io'],
       imgSrc: ["'self'", 'data:', 'https:'],
       fontSrc: ["'self'", 'fonts.gstatic.com'],
       connectSrc: ["'self'", 'plausible.io']
