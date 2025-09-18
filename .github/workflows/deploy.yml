@@ -44,8 +44,8 @@ jobs:
 
           [Service]
           Type=simple
-          WorkingDirectory=/opt/tahoe-night-nurse/app
-          ExecStart=/usr/bin/node /opt/tahoe-night-nurse/app/server/index.js
+          WorkingDirectory=/opt/tahoe-night-nurse-v2
+          ExecStart=/usr/bin/node /opt/tahoe-night-nurse-v2/server/index.js
           Restart=always
           RestartSec=10
           KillSignal=SIGINT
@@ -53,8 +53,8 @@ jobs:
           User=deploy
           Group=deploy
           Environment=NODE_ENV=production
-          Environment=PORT=5010
-          EnvironmentFile=/opt/tahoe-night-nurse/.env
+          Environment=PORT=5006
+          EnvironmentFile=/opt/tahoe-night-nurse-v2/.env
 
           [Install]
           WantedBy=multi-user.target
@@ -87,10 +87,10 @@ jobs:
             echo "=== Starting Tahoe Night Nurse deployment ==="
 
             # Create backup of current deployment if it exists
-            if [ -d /opt/tahoe-night-nurse/app ] && [ "$(ls -A /opt/tahoe-night-nurse/app)" ]; then
+            if [ -d /opt/tahoe-night-nurse-v2 ] && [ "$(ls -A /opt/tahoe-night-nurse-v2)" ]; then
               echo "Creating backup of current deployment..."
-              sudo rm -rf /opt/tahoe-night-nurse/app.backup || true
-              sudo cp -a /opt/tahoe-night-nurse/app /opt/tahoe-night-nurse/app.backup
+              sudo rm -rf /opt/tahoe-night-nurse-v2.backup || true
+              sudo cp -a /opt/tahoe-night-nurse-v2 /opt/tahoe-night-nurse-v2.backup
             fi
 
             # Stop the service
@@ -99,14 +99,14 @@ jobs:
 
             # Create directories with proper ownership
             echo "Setting up directories..."
-            mkdir -p /opt/tahoe-night-nurse/app
-            mkdir -p /opt/tahoe-night-nurse/data
-            mkdir -p /opt/tahoe-night-nurse/logs
-            sudo chown -R deploy:deploy /opt/tahoe-night-nurse || true
+            mkdir -p /opt/tahoe-night-nurse-v2/app
+            mkdir -p /opt/tahoe-night-nurse-v2/data
+            mkdir -p /opt/tahoe-night-nurse-v2/logs
+            sudo chown -R deploy:deploy /opt/tahoe-night-nurse-v2 || true
 
             # Clean app directory (preserve data directory)
             echo "Cleaning app directory..."
-            rm -rf /opt/tahoe-night-nurse/app/* || true
+            rm -rf /opt/tahoe-night-nurse-v2/app/* || true
 
             ARTIFACT=/tmp/deploy_tahoe_night_nurse/artifact.tgz
 
@@ -126,54 +126,54 @@ jobs:
 
             # Extract the uploaded tarball
             echo "Extracting application files..."
-            tar -xzf "$ARTIFACT" -C /opt/tahoe-night-nurse/app
+            tar -xzf "$ARTIFACT" -C /opt/tahoe-night-nurse-v2/app
 
             # Verify extraction
-            if [ ! -f /opt/tahoe-night-nurse/app/server/index.js ]; then
+            if [ ! -f /opt/tahoe-night-nurse-v2/app/server/index.js ]; then
               echo "ERROR: Main application file not found after extraction!"
               echo "Contents of app directory:"
-              ls -la /opt/tahoe-night-nurse/app/
+              ls -la /opt/tahoe-night-nurse-v2/app/
               exit 1
             fi
 
             rm "$ARTIFACT"
 
             # Set ownership for all files
-            sudo chown -R deploy:deploy /opt/tahoe-night-nurse/app
+            sudo chown -R deploy:deploy /opt/tahoe-night-nurse-v2/app
 
             # Create symlink to data directory for database
             echo "Creating data directory symlink..."
-            cd /opt/tahoe-night-nurse/app && ln -sfn ../data data || true
+            cd /opt/tahoe-night-nurse-v2/app && ln -sfn ../data data || true
 
             # Move database to data directory if exists in app
-            if [ -f /opt/tahoe-night-nurse/app/database.sqlite ]; then
+            if [ -f /opt/tahoe-night-nurse-v2/app/database.sqlite ]; then
               echo "Moving database to data directory..."
-              mv /opt/tahoe-night-nurse/app/database.sqlite /opt/tahoe-night-nurse/data/ || true
+              mv /opt/tahoe-night-nurse-v2/app/database.sqlite /opt/tahoe-night-nurse-v2/data/ || true
             fi
 
             # Install/update systemd service
             echo "Installing systemd service..."
-            sudo cp /opt/tahoe-night-nurse/app/deployment/tahoe-night-nurse.service /etc/systemd/system/
+            sudo cp /opt/tahoe-night-nurse-v2/app/deployment/tahoe-night-nurse.service /etc/systemd/system/
 
             # Create environment file if not exists
-            if [ ! -f /opt/tahoe-night-nurse/.env ]; then
+            if [ ! -f /opt/tahoe-night-nurse-v2/.env ]; then
               echo "Creating environment file..."
-              sudo touch /opt/tahoe-night-nurse/.env
-              sudo chown deploy:deploy /opt/tahoe-night-nurse/.env
-              sudo chmod 600 /opt/tahoe-night-nurse/.env
-              echo "PORT=5010" | sudo tee /opt/tahoe-night-nurse/.env
-              echo "NODE_ENV=production" | sudo tee -a /opt/tahoe-night-nurse/.env
-              echo "DATABASE_PATH=/opt/tahoe-night-nurse/data/database.sqlite" | sudo tee -a /opt/tahoe-night-nurse/.env
-              echo "SESSION_SECRET=$(openssl rand -base64 32)" | sudo tee -a /opt/tahoe-night-nurse/.env
-              echo "ADMIN_USERNAME=admin" | sudo tee -a /opt/tahoe-night-nurse/.env
-              echo "ADMIN_PASSWORD=\$2a\$10\$Hft9mGv3ueEwU0z8NnUF7.3Px.S6XKxg2IxQkW5vOcRiK9L6pQJdq" | sudo tee -a /opt/tahoe-night-nurse/.env
-              echo "# Email settings (configure these)" | sudo tee -a /opt/tahoe-night-nurse/.env
-              echo "EMAIL_HOST=" | sudo tee -a /opt/tahoe-night-nurse/.env
-              echo "EMAIL_PORT=587" | sudo tee -a /opt/tahoe-night-nurse/.env
-              echo "EMAIL_USER=" | sudo tee -a /opt/tahoe-night-nurse/.env
-              echo "EMAIL_PASS=" | sudo tee -a /opt/tahoe-night-nurse/.env
-              echo "EMAIL_FROM=noreply@tahoenightnurse.com" | sudo tee -a /opt/tahoe-night-nurse/.env
-              echo "NOTIFY_EMAIL=admin@tahoenightnurse.com" | sudo tee -a /opt/tahoe-night-nurse/.env
+              sudo touch /opt/tahoe-night-nurse-v2/.env
+              sudo chown deploy:deploy /opt/tahoe-night-nurse-v2/.env
+              sudo chmod 600 /opt/tahoe-night-nurse-v2/.env
+              echo "PORT=5006" | sudo tee /opt/tahoe-night-nurse-v2/.env
+              echo "NODE_ENV=production" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
+              echo "DATABASE_PATH=/opt/tahoe-night-nurse-v2/data/database.sqlite" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
+              echo "SESSION_SECRET=$(openssl rand -base64 32)" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
+              echo "ADMIN_USERNAME=admin" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
+              echo "ADMIN_PASSWORD=\$2a\$10\$Hft9mGv3ueEwU0z8NnUF7.3Px.S6XKxg2IxQkW5vOcRiK9L6pQJdq" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
+              echo "# Email settings (configure these)" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
+              echo "EMAIL_HOST=" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
+              echo "EMAIL_PORT=587" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
+              echo "EMAIL_USER=" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
+              echo "EMAIL_PASS=" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
+              echo "EMAIL_FROM=noreply@tahoenightnurse.com" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
+              echo "NOTIFY_EMAIL=admin@tahoenightnurse.com" | sudo tee -a /opt/tahoe-night-nurse-v2/.env
             fi
 
             # Reload systemd and start service
@@ -199,13 +199,13 @@ jobs:
 
             # Test if app responds on port
             echo "Testing application endpoint..."
-            if curl -f -s -o /dev/null -w "%{http_code}" http://localhost:5010 | grep -q "200\|301\|302"; then
-              echo "✓ Application responding on port 5010"
+            if curl -f -s -o /dev/null -w "%{http_code}" http://localhost:5006 | grep -q "200\|301\|302"; then
+              echo "✓ Application responding on port 5006"
             else
-              echo "✗ WARNING: Application not responding on port 5010 (checking logs...)"
+              echo "✗ WARNING: Application not responding on port 5006 (checking logs...)"
               sudo journalctl -u tahoe-night-nurse --no-pager -n 20
             fi
 
             echo "=== Deployment completed successfully ==="
-            echo "Application is running on port 5010"
-            echo "Configure nginx to proxy requests to http://localhost:5010"
+            echo "Application is running on port 5006"
+            echo "Application accessible at https://crisv1.act-two-vibe.com via Cloudflare tunnel"
