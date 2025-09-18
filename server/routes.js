@@ -191,7 +191,7 @@ router.get('/admin/login', (req, res) => {
 router.post('/admin/login', (req, res) => {
   const { username, password } = req.body;
   const validUser = process.env.BASIC_AUTH_USER || 'admin';
-  const validPass = process.env.BASIC_AUTH_PASS || 'password';
+  const validPass = process.env.BASIC_AUTH_PASS || 'changeme123';  // Change in production!
 
   if (username === validUser && password === validPass) {
     req.session.isAdmin = true;
