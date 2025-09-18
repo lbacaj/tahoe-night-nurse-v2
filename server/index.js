@@ -10,16 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'],
-      scriptSrc: ["'self'", "'unsafe-inline'", 'plausible.io', 'static.cloudflareinsights.com'],
-      imgSrc: ["'self'", 'data:', 'https:'],
-      fontSrc: ["'self'", 'fonts.gstatic.com'],
-      connectSrc: ["'self'", 'plausible.io', 'cloudflareinsights.com']
-    }
-  },
+  contentSecurityPolicy: false,
   hsts: {
     maxAge: 31536000,
     includeSubDomains: true,
